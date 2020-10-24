@@ -1,0 +1,28 @@
+Employee-manager
+Relationship
+
+
+Class manager(models.Model):
+	mname=models.CharField(max_length=100)
+	eid=models.IntegerField(max_length=100,primary_key=True)
+
+Class employee(models.Model):
+	eid=models.ForeignKey(Manager, on_delete=models.CASCADE,null=True)
+	ename=models.CharField(max_length=20)
+	mid=models.IntegerField(max_length=20)
+
+
+CREATE TABLE employee(
+eid INTEGER NOT NULL,
+ename VARCHAR(20) NOT NULL,
+mid INTEGER,
+FOREIGN KEY(eid) REFERENCES manager(eid)
+);
+CREATE TABLE manager(
+Manager_id INTEGER NOT NULL,
+mname VARCHAR(20) NOT NULL,
+eid INTEGER PRIMARY KEY
+);
+
+
+SELECT e.eid,e.ename,m.mname FROM employee AS e INNER JOIN manager AS m ON e.mid=m.eid;
